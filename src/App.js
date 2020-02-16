@@ -4,7 +4,7 @@ import './App.css';
 import Test from './Test'
 import ChartWrapper from './ChartWrapper'
 import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container'
+import {Container, Row} from 'react-bootstrap'
 // api https://udemy-react-d3.firebaseio.com/ages.json
 class App extends Component   {
 
@@ -34,7 +34,10 @@ class App extends Component   {
           <Navbar.Brand>bar chart</Navbar.Brand>
         </Navbar>
       <Container>
-      <ChartWrapper />
+        
+      
+         <ChartWrapper />
+         
       </Container>
      
       </div>
