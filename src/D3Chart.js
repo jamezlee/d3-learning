@@ -26,11 +26,11 @@ export default class D3Chart {
             .attr("transform", `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
 
         // constructor mention
-        vis.svg.append("text")
-            .attr("x", WIDTH /2)
-            .attr("y", HEIGHT+40)
-            .attr("text-anchor","middle")
-            .text("The world tallerst man")
+        // vis.svg.append("text")
+        //     .attr("x", WIDTH /2)
+        //     .attr("y", HEIGHT+40)
+        //     .attr("text-anchor","middle")
+        //     //.text("The world tallerst man")
 
         //data join
         //join new data with old elements, if any.
@@ -69,7 +69,7 @@ export default class D3Chart {
         ]).then((dataSet) => {
             vis.menData = dataSet[0]
             vis.womenData = dataSet[1]
-            vis.updated("men")
+            vis.update("men")
             // const [men, women] = dataSet
             // let flag = true
             // vis.data = men
@@ -100,9 +100,9 @@ export default class D3Chart {
         // })
     }
 
-    updated(gender) {
+    update(gender) {
         const vis = this
-
+        console.log(gender)
         vis.data = (gender == "men") ? vis.menData : vis.womenData;
         vis.xLabel.text(`The world's tallest ${gender}`)
         const y = d3.scaleLinear()

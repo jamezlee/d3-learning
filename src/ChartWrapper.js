@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component, PureComponent} from 'react';
 import D3Chart from './D3Chart';
 
 class ChartWrapper extends Component {
@@ -6,12 +6,13 @@ class ChartWrapper extends Component {
     constructor(props){
         super(props)
         console.log(props)
-        this.state={
-            chart:null
-        }
+        // this.state={
+        //     chart:null
+        // }
     }
 
     componentDidMount(){
+        console.log('componentDidMount')
         this.setState({
             chart: new D3Chart(this.refs.chart)
         })
@@ -45,26 +46,29 @@ class ChartWrapper extends Component {
         
     // }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(this.props.gender)
-        console.log(nextProps)
-        if(this.props.gender != nextProps){
-          //  this.fetchData(nextProps);
-            return true;  
-        }
-        else{
-            return false
-        }
+    componentDidUpdate(nextProps, nextState){
+        console.log('componentDidUpdate')
     }
-
-    // componentWillReceiveProps(nextProps) {
-    //    console.log(nextProps)
-    //    console.log(this.state.chart)
-    //     //this.state.chart.update(nextProps.gender)
-    //     // this.setState({
-    //     //     chart:nextProps.gender
-    //     // })
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("shouldComponentUpdate")
+    //   if(this.props.gender != nextProps){
+    //        // this.state.chart.update(nextProps.gender)
+    //         return true;  
+    //     }
+    //     else{
+    //         return false
+    //     }
     // }
+
+
+    componentWillReceiveProps(nextProps) {
+       console.log(nextProps)
+       console.log(this.state.chart)
+        this.state.chart.update(nextProps.gender)
+        // this.setState({
+        //     chart:nextProps.gender
+        // })
+    }
 
 
     render() {
