@@ -40,12 +40,11 @@ export default class D3Chart {
         // creat new elements as needed
 
         
-        vis.svg.append("text")
+        vis.xLabel = vis.svg.append("text")
             .attr("x", WIDTH / 2)
             .attr("y", HEIGHT + 50)
             .attr("text-anchor", "middle")
-            .text("the world's tallest Men")
-
+                
         vis.svg.append("text")
             .attr("x", -(HEIGHT / 2))
             .attr("y", -50)
@@ -62,15 +61,18 @@ export default class D3Chart {
             d3.json(menUrl),
             d3.json(womenUrl)
         ]).then((dataSet) => {
-            const [men, women] = dataSet
-            let flag = true
-            vis.data = men
-            vis.updated()
-            d3.interval(() => {
-                vis.data = flag ? men : women
-                vis.updated()
-                flag =! flag
-            }, 1000)
+            vis.menData = dataSet[0]
+            vis.womenData = dataSet[1]
+            vis.updated("men")
+            // const [men, women] = dataSet
+            // let flag = true
+            // vis.data = men
+            // vis.updated()
+            // d3.interval(() => {
+            //     vis.data = flag ? men : women
+            //     vis.updated()
+            //     flag =! flag
+            // }, 1000)
         })
         // d3.json(menUrl).then(data=>{
         //     vis.data = data
@@ -92,8 +94,11 @@ export default class D3Chart {
         // })
     }
 
-    updated() {
+    updated(gender) {
         const vis = this
+
+        vis.data = (gender == "men") ? vis.menData : vis.womenData;
+        vis.xLabel.text(`The world's tallest ${gender}`)
         const y = d3.scaleLinear()
             .domain([
                 d3.min(vis.data, d => d.height) * 0.95,

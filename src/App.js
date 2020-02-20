@@ -48,7 +48,7 @@ class App extends Component   {
           <Dropdown 
         gender={gender}
         genderSelect={this.genderSelected} /></Col></Row>
-        <Row><Col xs={12}><ChartWrapper /></Col></Row>
+        <Row><Col xs={12}><ChartWrapper  gender={gender}/></Col></Row>
       </Container>
      
       </div>
