@@ -25,6 +25,12 @@ export default class D3Chart {
             .append("g")
             .attr("transform", `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
 
+        // constructor mention
+        vis.svg.append("text")
+            .attr("x", WIDTH /2)
+            .attr("y", HEIGHT+40)
+            .attr("text-anchor","middle")
+            .text("The world tallerst man")
 
         //data join
         //join new data with old elements, if any.
