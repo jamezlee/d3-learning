@@ -1,6 +1,6 @@
 import React,{Component, PureComponent} from 'react';
 import D3Chart from './D3Chart';
-
+import D3LineChart from './D3LineChart'
 class ChartWrapper extends Component {
 
     constructor(props){
@@ -62,8 +62,6 @@ class ChartWrapper extends Component {
 
 
     componentWillReceiveProps(nextProps) {
-       console.log(nextProps)
-       console.log(this.state.chart)
         this.state.chart.update(nextProps.gender)
         // this.setState({
         //     chart:nextProps.gender

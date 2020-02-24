@@ -102,9 +102,10 @@ export default class D3Chart {
 
     update(gender) {
         const vis = this
-        console.log(gender)
         vis.data = (gender == "men") ? vis.menData : vis.womenData;
         vis.xLabel.text(`The world's tallest ${gender}`)
+
+        
         const y = d3.scaleLinear()
             .domain([
                 d3.min(vis.data, d => d.height) * 0.95,
